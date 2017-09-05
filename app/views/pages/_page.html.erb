@@ -1,0 +1,45 @@
+<%= render 'layouts/navigation'%>
+<div class="wrapper">
+  <div class="header header-filter" style="background-image: url('<%= image_path("material_kit/bg2.jpg") %>');"></div>
+	<div class="main main-raised">
+	  <div class="container message">
+	  <%= render 'layouts/message'%>
+	  </div>
+		<div class="section section-basic">
+	    <div class="container">
+        <% obj.each do |page|%>
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+              <div class="well well-lg">
+                <div class="page-title">
+                  <%= link_to page.title , page_path(page)%>
+                </div>
+                <div class="page-body">
+                   <%=  truncate(page.description , length: 100)%>
+                    <div class="article-meta-description"> 
+                     <small>
+                       created by <%= page.user.username if page.user%> ,
+                                  <%= time_ago_in_words(page.created_at) %> ago
+                      last updated<%= time_ago_in_words(page.updated_at)%> ago
+                     </small>
+                   </div>
+              
+                </div>
+                <% if logged_in? && (current_user == page.user || current_user.admin)%>
+                  <div class="page-actions">
+                      <%= link_to "Edit This Article" ,edit_page_path(page) , class:"btn btn-xs btn-primary"%>
+                      <%= link_to "Delete This Article" ,page_path(page) , method:  :delete ,  
+                                                        data:{confrim: "Are You Sure U Want Dlete this Article"},
+                                                        class:"btn btn-xs btn-danger" %>
+                  </div>
+                <%end%>
+              </div>
+            </div>
+          </div>
+        <%end%>
+        </table>
+		    </div>
+		   </div>
+		  </div> 
+		    <!-- end row -->
+<%= render 'layouts/footer'%>

@@ -1,0 +1,29 @@
+<div class="wrapper">
+  <div class="header header-filter" style="background-image: url('<%= image_path("material_kit/bg2.jpg") %>');"></div>
+	<div class="main main-raised">
+		<div class="section section-basic">
+	    <div class="container message">
+	      <%= render 'layouts/message'%>
+      <div align =center>
+        <h1 align = center >All The Users </h1>
+        <% obj.each do |user|%>
+          <ul class="listing">
+            <div class="row">
+              <div class=" well col-xs-4 col-xs-offset-4">
+                <li><%= link_to gravatar_for(user), user_path(user)%></li>
+                <li class ="page-title"><%= link_to user.username , user_path(user)%></li>    
+                <li><small><%= pluralize(user.pages.count, "page" )if user.pages%></small></li>
+                <% if logged_in and current_user.admin %>
+                  <li><%= link_to "Delete this user", user_path(user), method: :delete,
+                                              data: { confirm: "Are you sure you want to delete the user and all their articles?" } %></li>
+
+                <% end %>
+              </div>
+            </div>
+          </ul>
+        <%end%>
+      </table>
+      </div>
+    </div>
+  </div>  
+</div>  

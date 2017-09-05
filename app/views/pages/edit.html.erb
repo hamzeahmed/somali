@@ -1,0 +1,43 @@
+<%= render 'layouts/navigation'%>
+	<div class="section section-full-screen section-signup" style="background-image: url('<%= image_path("material_kit/city.jpg") %>'); background-size: cover; background-position: top center; min-height: 700px;">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<div class="card card-signup">
+						  <%= form_for @page do |f|%>
+							<form class="form" method="" action="">
+								<div class="header header-primary text-center">
+									<h4>Edit Article</h4>
+								</div>
+								<div class="content">
+								  
+                <div class="form-group label-floating">
+                  <%= f.label :title , class:"control-label"%>
+								  <%= f.text_field :title , class: "form-control" , placeholder: "Title" %>
+							  </div>
+							  
+							  <div class="form-group label-floating">
+								  <%= f.label :description , class:"control-label"%>
+								  <%= f.text_field :description , class: "form-control" , placeholder: "Description"  ,rows:"5"%>
+							  </div>
+							
+									<!-- If you want to add a checkbox to this form, uncomment this code
+
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="optionsCheckboxes" checked>
+											Subscribe to newsletter
+										</label>
+									</div> -->
+								</div>
+								<div class="footer text-center">
+								  <%= f.submit class: "btn btn-info btn-raised btn-lg btn-xlarge"%>
+								</div>
+							<% end %>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+<%= render 'layouts/footer'%>
